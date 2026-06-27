@@ -34,8 +34,7 @@ const Navbar = ({
   setDarkMode,
   setToast,
 }) => {
-  const [anchorEl, setAnchorEl] = useState(null);
-  const [currentCategory, setCurrentCategory] = useState(null);
+
   const [loginOpen, setLoginOpen] = useState(false);
   const [tabIndex, setTabIndex] = useState(0);
   const [showPassword, setShowPassword] = useState(false);
@@ -48,19 +47,8 @@ const Navbar = ({
   const [registerConfirmPassword, setRegisterConfirmPassword] = useState("");
   const navigate = useNavigate();
 
-  const handleCategoryHover = (event, category) => {
-    setAnchorEl(event.currentTarget);
-    setCurrentCategory(category);
-  };
-
-  const handleClose = () => {
-    setAnchorEl(null);
-    setCurrentCategory(null);
-  };
-
   const handleCategoryClick = (category) => {
     navigate(`/search/${encodeURIComponent(category)}`);
-    handleClose();
   };
 
   const handleLoginOpen = () => setLoginOpen(true);
@@ -213,25 +201,19 @@ const Navbar = ({
               <Button
                 key={cat}
                 onClick={() => handleCategoryClick(cat)}
-                onMouseEnter={(e) => handleCategoryHover(e, cat)}
+                sx={{
+                  fontWeight: "bold",
+                  textTransform: "none",
+                  fontSize: "1.05rem",
+                  color: "text.primary",
+                  "&:hover": {
+                    color: "primary.main",
+                  },
+                }}
               >
                 {cat}
               </Button>
             ))}
-
-            <Menu
-              anchorEl={anchorEl}
-              open={Boolean(anchorEl)}
-              onClose={handleClose}
-              MenuListProps={{ onMouseLeave: handleClose }}
-            >
-              {currentCategory &&
-                categories[currentCategory].map((item, index) => (
-                  <MenuItem key={index} onClick={() => handleCategoryClick(item)}>
-                    {item}
-                  </MenuItem>
-                ))}
-            </Menu>
           </Box>
 
           <Box sx={{ display: "flex", alignItems: "center", gap: 2 }}>

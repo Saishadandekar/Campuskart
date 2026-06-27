@@ -55,7 +55,7 @@ exports.createProduct = async (req, res) => {
       imageUrls = req.files.map((file) => file.path);
     }
 
-    if (!category || !['Electronics', 'Books', 'Stationary', 'Clothes'].includes(category)) {
+    if (!category || !['Electronics', 'Books', 'Stationary', 'Stationery', 'Clothes'].includes(category)) {
       return res.status(400).json({ message: 'Invalid category specified' });
     }
     
