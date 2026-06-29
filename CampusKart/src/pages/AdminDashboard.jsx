@@ -108,36 +108,37 @@ const AdminDashboard = ({ fetchProducts }) => {
           }}
         >
           {filteredProducts.map((product) => (
-            <Box
-              key={product._id || product.id} // Use _id or id
-              sx={{
-                border: "1px solid #ddd",
-                borderRadius: 2,
-                padding: 2,
-              }}
+            <ProductCard
+              key={product._id || product.id}
+              product={product}
+              showStatus
             >
-              <ProductCard product={product} showStatus />
-
               {/* Show buttons only for pending products */}
               {product.status === "pending" && (
-                <Box sx={{ display: "flex", gap: 2, mt: 2 }}>
+                <Box sx={{ display: "flex", gap: 2, mt: 2, justifyContent: "center" }}>
                   <Button
                     variant="contained"
                     color="success"
-                    onClick={() => handleUpdateStatus(product._id, "active")} // Approves directly
+                    onClick={(e) => {
+                      e.stopPropagation();
+                      handleUpdateStatus(product._id, "active");
+                    }} // Approves directly
                   >
                     Approve
                   </Button>
                   <Button
                     variant="outlined"
                     color="error"
-                    onClick={() => handleOpenRejectionDialog(product._id)} // Opens dialog
+                    onClick={(e) => {
+                      e.stopPropagation();
+                      handleOpenRejectionDialog(product._id);
+                    }} // Opens dialog
                   >
                     Reject
                   </Button>
                 </Box>
               )}
-            </Box>
+            </ProductCard>
           ))}
         </Box>
       )}

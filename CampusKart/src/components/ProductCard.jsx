@@ -11,7 +11,7 @@ const statusColors = {
   purchased: 'info',
 };
 
-const ProductCard = ({ product, showStatus = false, onResubmit, onMarkAsSold, isOwner = false, isSoldItem = false }) => {
+const ProductCard = ({ product, showStatus = false, onResubmit, onMarkAsSold, isOwner = false, isSoldItem = false, children }) => {
   const [currentImage, setCurrentImage] = useState(0);
   const navigate = useNavigate();
 
@@ -169,6 +169,7 @@ const ProductCard = ({ product, showStatus = false, onResubmit, onMarkAsSold, is
               Resubmit
             </Button>
           )}
+          {children}
         </CardContent>
       </Card>
     </div>
