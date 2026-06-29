@@ -21,8 +21,8 @@ import {
   Visibility,
   VisibilityOff,
   AccountCircle,
-  Brightness4,
-  Brightness7,
+  LightMode,
+  DarkMode,
 } from "@mui/icons-material";
 import { Link, useNavigate } from "react-router-dom";
 import categories from "../data/categories";
@@ -218,7 +218,7 @@ const Navbar = ({
 
           <Box sx={{ display: "flex", alignItems: "center", gap: 2 }}>
             <IconButton onClick={() => setDarkMode(!darkMode)}>
-              {darkMode ? <Brightness7 /> : <Brightness4 />}
+              {darkMode ? <LightMode /> : <DarkMode />}
             </IconButton>
 
             {loggedInUser ? (
